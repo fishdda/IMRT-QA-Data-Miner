@@ -5,7 +5,7 @@ requires = [
 ]
 
 setup(
-    name='imrt-qa-data-miner',
+    name='imrt_qa_data_miner',
     include_package_data=True,
     packages=find_packages(),
     version='0.1.9',
@@ -20,7 +20,7 @@ setup(
     install_requires=requires,
     entry_points={
         'console_scripts': [
-            'imrt-qa-data-miner=imrt-qa-data-miner.main:main',
+            'imrt_qa_data_miner=imrt_qa_data_miner.main:main',
         ],
     },
     long_description="""IMRT QA Data Miner
