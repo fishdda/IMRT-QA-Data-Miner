@@ -32,7 +32,7 @@ def process_data(init_directory, results_file):
 
     for dirName, subdirList, fileList in os.walk(init_directory):
         for fname in fileList:
-            if fname.find('.pdf') > -1:
+            if os.path.splitext(fname)[1].lower() == '.pdf':
                 try:
                     row = pdf_to_qa_result(os.path.join(dirName, fname))
                     if row:
