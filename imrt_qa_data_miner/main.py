@@ -23,11 +23,16 @@ def process_data(init_directory, results_file):
                    'Distance(mm)',
                    'Threshold (%)',
                    'Meas Uncertainty',
+                   'Use VanDyk',
                    'Analysis Type',
                    'Total Points',
                    'Passed',
                    'Failed',
-                   '% Passed\n']
+                   '% Passed',
+                   'Min',
+                   'Max',
+                   'Average',
+                   'Std Dev\n']
         csv.write(','.join(columns))
 
     for dirName, subdirList, fileList in os.walk(init_directory):

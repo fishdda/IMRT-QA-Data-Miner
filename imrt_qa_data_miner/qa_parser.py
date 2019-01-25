@@ -29,7 +29,7 @@ class MapcheckResult:
             if row.find('Date: ') > -1:
                 self.date = row.strip('Date: ')
             if row.find('Hospital Name: ') > -1:
-                self.hospital = row.strip('Hospital Name: ')
+                self.hospital = row.split('Hospital Name: ', 1)[1]
 
             if self.date and self.hospital:
                 break
