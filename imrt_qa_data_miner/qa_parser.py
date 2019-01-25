@@ -6,7 +6,7 @@ Created on Wed Apr 18 2018
 @author: Dan Cutright, PhD
 """
 
-from pdf_to_text import convert_pdf_to_txt
+from imrt_qa_data_miner.pdf_to_text import convert_pdf_to_txt
 from os.path import basename
 
 

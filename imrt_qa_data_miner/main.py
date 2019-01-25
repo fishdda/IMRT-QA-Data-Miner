@@ -6,8 +6,7 @@ Created on Wed Apr 18 2018
 @author: Dan Cutright, PhD
 """
 
-from __future__ import print_function
-from qa_parser import pdf_to_qa_result
+from imrt_qa_data_miner.qa_parser import pdf_to_qa_result
 import os
 import sys
 from datetime import datetime
