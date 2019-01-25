@@ -72,10 +72,11 @@ class MapcheckResult:
                self.qa_file_parameter['Patient ID'].replace(',', '^'),
                self.qa_file_parameter['Plan Date'].replace(',', '^'),
                self.dose_comparison_type,
-               self.dose_comparison['Difference (%)'],
+               self.dose_comparison['% Diff'],
                self.dose_comparison['Distance (mm)'],
-               self.dose_comparison['Threshold (%)'],
+               self.dose_comparison['Threshold'],
                self.dose_comparison['Meas Uncertainty'],
+               self.dose_comparison['Use VanDyk'],
                self.analysis_type,
                self.summary['Total Points'],
                self.summary['Passed'],
@@ -87,7 +88,7 @@ class MapcheckResult:
 def is_file_snc_mapcheck(text_data):
 
     find_these = {'QA File Parameter': False,
-                  'Threshold (%)': False,
+                  'Threshold': False,
                   'Notes': False,
                   'Reviewed By :': False}
 
