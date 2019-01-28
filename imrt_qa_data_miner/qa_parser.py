@@ -50,6 +50,15 @@ class MapcheckResult:
             self.analysis_type = 'DTA'
         self.summary = self.get_group_results('Summary (%s Analysis)' % self.analysis_type)
 
+        try:
+            self.text.index('Gamma Index Summary')
+            self.gamma_stats = self.get_gamma_statistics('Gamma Index Summary')
+        except ValueError:
+            self.gamma_stats = {'Minimum': 'n/a',
+                                'Maximum': 'n/a',
+                                'Average': 'n/a',
+                                'Stdv': 'n/a'}
+
     def get_group_results(self, data_group):
         group_start = self.text.index(data_group)
         var_name_start = group_start + 1
@@ -67,6 +76,18 @@ class MapcheckResult:
 
         return group_results
 
+    def get_gamma_statistics(self, stats_delimiter):
+        gamma_stats = {}
+        stats_fields = ['Minimum', 'Maximum', 'Average', 'Stdv']
+
+        group_start = self.text.index(stats_delimiter)
+
+        for field in stats_fields:
+            field_start = self.text[group_start:-1].index(field) + 1
+            gamma_stats[field] = self.text[group_start:-1][field_start]
+
+        return gamma_stats
+
     def data_to_csv(self):
         row = [self.qa_file_parameter['Patient Name'].replace(',', '^'),
                self.qa_file_parameter['Patient ID'].replace(',', '^'),
@@ -81,7 +102,11 @@ class MapcheckResult:
                self.summary['Total Points'],
                self.summary['Passed'],
                self.summary['Failed'],
-               self.summary['% Passed']]
+               self.summary['% Passed'],
+               self.gamma_stats['Minimum'],
+               self.gamma_stats['Maximum'],
+               self.gamma_stats['Average'],
+               self.gamma_stats['Stdv']]
         return ','.join(row)
 
 
