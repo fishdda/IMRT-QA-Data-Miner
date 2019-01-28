@@ -89,7 +89,7 @@ class MapcheckResult:
         return gamma_stats
 
     def data_to_csv(self):
-        row = [self.qa_file_parameter['Patient Name'].replace(',', '^'),
+        row = [self.qa_file_parameter['Patient Name'].replace('^', ' ').title(),
                self.qa_file_parameter['Patient ID'].replace(',', '^'),
                self.qa_file_parameter['Plan Date'].replace(',', '^'),
                self.dose_comparison_type,
