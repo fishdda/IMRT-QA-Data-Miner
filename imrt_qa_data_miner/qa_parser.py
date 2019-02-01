@@ -8,6 +8,7 @@ Created on Wed Apr 18 2018
 
 from imrt_qa_data_miner.pdf_to_text import convert_pdf_to_txt
 from os.path import basename
+import re
 
 
 def pdf_to_qa_result(abs_file_path):
@@ -36,6 +37,18 @@ class MapcheckResult:
 
         self.qa_file_parameter = self.get_group_results('QA File Parameter')
 
+        x_offset = '0'
+        y_offset = '0'
+        try:
+            set2_index = self.text.index('Set2')
+            if self.text[set2_index + 2].find('CAX') > -1:
+                x_offset, y_offset = re.findall(r'[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?',
+                                                self.text[set2_index + 2])
+        except ValueError:
+            pass
+
+        self.cax_offset = {'X offset': str(x_offset),
+                           'Y offset': str(y_offset)}
         try:
             self.text.index('Absolute Dose Comparison')
             self.dose_comparison_type = 'Absolute Dose Comparison'
@@ -106,7 +119,9 @@ class MapcheckResult:
                self.gamma_stats['Minimum'],
                self.gamma_stats['Maximum'],
                self.gamma_stats['Average'],
-               self.gamma_stats['Stdv']]
+               self.gamma_stats['Stdv'],
+               self.cax_offset['X offset'],
+               self.cax_offset['Y offset']]
         return ','.join(row)
 
 

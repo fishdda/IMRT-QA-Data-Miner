@@ -20,7 +20,7 @@ def process_data(init_directory, results_file):
                    'Plan Date',
                    'Dose Type',
                    'Difference (%)',
-                   'Distance(mm)',
+                   'Distance (mm)',
                    'Threshold (%)',
                    'Meas Uncertainty',
                    'Use VanDyk',
@@ -32,7 +32,9 @@ def process_data(init_directory, results_file):
                    'Min',
                    'Max',
                    'Average',
-                   'Std Dev\n']
+                   'Std Dev',
+                   'X offset (mm)',
+                   'Y offset (mm)\n']
         csv.write(','.join(columns))
 
     for dirName, subdirList, fileList in os.walk(init_directory):
